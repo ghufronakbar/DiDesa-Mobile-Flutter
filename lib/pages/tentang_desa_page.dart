@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:konek/models/InformasiDesaModel.dart';
 import 'package:konek/pages/pengurus_desa_page.dart';
+import 'package:konek/config.dart';
 
 class TentangDesaPage extends StatefulWidget {
   const TentangDesaPage({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _TentangDesaPageState extends State<TentangDesaPage> {
 
   Future<InformasiDesaModel> fetchInformasiDesa() async {
     final response = await http
-        .get(Uri.parse('http://localhost:5000/api/published/informasidesa'));
+        .get(Uri.parse('${URLs.baseUrl}/api/user/informasidesa'));
 
     if (response.statusCode == 200) {
       return InformasiDesaModel.fromJson(json.decode(response.body));
@@ -102,7 +103,7 @@ class _TentangDesaPageState extends State<TentangDesaPage> {
                                     height:
                                         MediaQuery.of(context).size.width * 0.2,
                                     child: Image.asset(
-                                      "pertanian.png",
+                                      "assets/images/pertanian.png",
                                       fit: BoxFit.fitHeight,
                                       height:
                                           MediaQuery.of(context).size.width *
@@ -158,7 +159,7 @@ class _TentangDesaPageState extends State<TentangDesaPage> {
                                     height:
                                         MediaQuery.of(context).size.width * 0.2,
                                     child: Image.asset(
-                                      "peternakan.png",
+                                      "assets/images/peternakan.png",
                                       fit: BoxFit.fitHeight,
                                       height:
                                           MediaQuery.of(context).size.width *
@@ -223,3 +224,4 @@ class _TentangDesaPageState extends State<TentangDesaPage> {
     );
   }
 }
+                

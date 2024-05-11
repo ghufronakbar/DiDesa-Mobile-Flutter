@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import 'package:konek/pages/berita_page.dart';
 import 'package:konek/pages/tentang_desa_page.dart';
 import 'package:konek/pages/umkm_page.dart';
+import 'package:konek/config.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -28,8 +29,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<List<UMKMModel.Values>> fetchUMKM(int limit) async {
-    final response =
-        await http.get(Uri.parse('http://localhost:5000/api/published/umkm'));
+    final response = await http.get(Uri.parse('${URLs.baseUrl}/api/user/umkm'));
 
     if (response.statusCode == 200) {
       final umkmModel =
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<List<BeritaModel.Values>> fetchBerita() async {
     final response =
-        await http.get(Uri.parse('http://localhost:5000/api/published/berita'));
+        await http.get(Uri.parse('${URLs.baseUrl}/api/user/berita'));
 
     if (response.statusCode == 200) {
       final beritaModel =
@@ -58,16 +58,21 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          title: Text(
+            "Konek",
+            style: GoogleFonts.outfit()
+                .copyWith(color: Colors.black, fontSize: 30),
+          ),
           leading: Container(
             margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-            child: Image(image: AssetImage("konek.png")),
+            child: Image.asset('assets/images/konek.png'),
           ),
           actions: [
             Container(
               margin: EdgeInsets.fromLTRB(0, 0, 12, 0),
               width: 40,
               child: IconButton(
-                icon: Image.asset('profile.png'),
+                icon: Image.asset('assets/images/profile.png'),
                 onPressed: () {},
               ),
             ),
@@ -436,6 +441,7 @@ class _HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(builder: (context) => TentangDesaPage()),
                   );
+                  
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -454,9 +460,7 @@ class _HomePageState extends State<HomePage> {
                         ]),
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
-                      child: Image(
-                        image: AssetImage('tentang_desa.png'),
-                      ),
+                      child: Image.asset("assets/images/tentang_desa.png"),
                     ),
                   ),
                 ),
@@ -477,24 +481,26 @@ class _HomePageState extends State<HomePage> {
           ),
           Column(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(17),
-                ),
-                width: MediaQuery.of(context).size.width * 0.16,
+              GestureDetector(
+                onTap: () {},
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 255, 255, 255),
-                      borderRadius: BorderRadius.circular(12),
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: 4, spreadRadius: 1, color: Colors.grey)
-                      ]),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: IconButton(
-                      icon: Image.asset('pendaftaran_umkm.png'),
-                      onPressed: () {},
+                    borderRadius: BorderRadius.circular(17),
+                  ),
+                  width: MediaQuery.of(context).size.width * 0.16,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        borderRadius: BorderRadius.circular(12),
+                        boxShadow: [
+                          BoxShadow(
+                              blurRadius: 4,
+                              spreadRadius: 1,
+                              color: Colors.grey)
+                        ]),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Image.asset("assets/images/pendaftaran_umkm.png"),
                     ),
                   ),
                 ),
@@ -531,7 +537,8 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: IconButton(
-                      icon: Image.asset('pengaduan_masyarakat.png'),
+                      icon:
+                          Image.asset('assets/images/pengaduan_masyarakat.png'),
                       onPressed: () {},
                     ),
                   ),
@@ -569,7 +576,8 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: IconButton(
-                      icon: Image.asset('pemilihan_kepala_desa.png'),
+                      icon: Image.asset(
+                          'assets/images/pemilihan_kepala_desa.png'),
                       onPressed: () {},
                     ),
                   ),

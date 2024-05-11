@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:konek/models/UMKMModel.dart';
+import 'package:konek/config.dart';
 
 class UMKMPage extends StatefulWidget {
   const UMKMPage({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _UMKMPageState extends State<UMKMPage> {
   }
 
   Future<void> fetchData() async {
-    final response = await http.get(Uri.parse("http://localhost:5000/api/published/umkm"));
+    final response = await http.get(Uri.parse("${URLs.baseUrl}/api/user/umkm"));
 
     if (response.statusCode == 200) {
       final jsonData = jsonDecode(response.body);

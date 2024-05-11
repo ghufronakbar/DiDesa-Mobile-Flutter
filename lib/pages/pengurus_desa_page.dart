@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:konek/models/PengurusDesaAnggotaModel.dart';
+import 'package:konek/config.dart';
 
 class PengurusDesaPage extends StatefulWidget {
   const PengurusDesaPage({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _PengurusDesaPageState extends State<PengurusDesaPage> {
 
   Future<PengurusDesaAnggotaModel> fetchData() async {
     final response =
-        await http.get(Uri.parse("http://localhost:5000/api/published/pengurusdesa"));
+        await http.get(Uri.parse("${URLs.baseUrl}/api/user/pengurusdesa"));
 
     if (response.statusCode == 200) {
       return PengurusDesaAnggotaModel.fromJson(json.decode(response.body));

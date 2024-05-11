@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:konek/pages/berita_page.dart';
 import 'package:konek/pages/home_page.dart';
+import 'package:konek/pages/login_page.dart';
 import 'package:konek/pages/pengurus_desa_page.dart';
 import 'package:konek/pages/splash_screen.dart';
 import 'package:konek/pages/tentang_desa_page.dart';
@@ -22,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Konek",      
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }

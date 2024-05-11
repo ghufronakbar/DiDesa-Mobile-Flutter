@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:konek/models/BeritaModel.dart'; // Sesuaikan dengan lokasi file model Anda
 import 'package:intl/intl.dart';
+import 'package:konek/config.dart';
 
 void main() {
   runApp(BeritaPage());
@@ -35,7 +36,7 @@ class _BeritaPageState extends State<BeritaPage> {
 
   Future<BeritaModel> fetchBeritaData() async {
     final response =
-        await http.get(Uri.parse('http://localhost:5000/api/published/berita'));
+        await http.get(Uri.parse('${URLs.baseUrl}/api/user/berita'));
     if (response.statusCode == 200) {
       return BeritaModel.fromJson(jsonDecode(response.body));
     } else {
