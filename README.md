@@ -1,4 +1,4 @@
-# konek
+# konek_mob_flutter
 
 A new Flutter project.
 
