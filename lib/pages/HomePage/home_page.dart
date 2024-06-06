@@ -163,7 +163,7 @@ class _HomePageState extends State<HomePage> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-            "Konek",
+            "DiDesa",
             style: GoogleFonts.outfit()
                 .copyWith(color: Colors.black, fontSize: 30),
           ),

@@ -106,10 +106,13 @@ class _DetailCalonPageState extends State<DetailCalonPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 foto != ''
-                    ? Image.network(
-                        foto,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(12.0),
+                        child: Image.network(
+                          foto,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
                       )
                     : Container(
                         margin: EdgeInsets.fromLTRB(40, 0, 0, 0),
@@ -125,13 +128,20 @@ class _DetailCalonPageState extends State<DetailCalonPage> {
                 ),
                 SizedBox(height: 16.0),
                 Text(
-                  'Deskripsi: ${_calonData['deskripsi'] ?? ''}',
+                  _calonData['deskripsi'] ?? '',
                   style: TextStyle(fontSize: 18.0),
                 ),
                 SizedBox(height: 16.0),
-                Text(
-                  'Total Pemilih: ${_calonData['total_pemilih'] ?? ''}',
-                  style: TextStyle(fontSize: 18.0),
+                Container(
+                  padding: EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                    color: Color(0xff1F5876),
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  child: Text(
+                    'Total Pemilih: ${_calonData['total_pemilih'] ?? ''}',
+                    style: TextStyle(fontSize: 18.0, color: Colors.white),
+                  ),
                 ),
               ],
             ),

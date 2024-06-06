@@ -96,11 +96,15 @@ class _CalonKepalaDesaPageState extends State<CalonKepalaDesaPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        calon['nama_lengkap'],
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
+                      child: Flexible(
+                        child: Text(
+                          calon['nama_lengkap'],
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ),

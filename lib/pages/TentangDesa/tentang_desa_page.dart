@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:konek_mob_flutter/config.dart';
@@ -69,6 +68,7 @@ class _TentangDesaPageState extends State<TentangDesaPage> {
                   Text(
                     informasiDesa.namaDesa ?? '',
                     maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: GoogleFonts.outfit().copyWith(
                       fontSize: 30,
                       fontWeight: FontWeight.normal,
@@ -86,15 +86,13 @@ class _TentangDesaPageState extends State<TentangDesaPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
+                      Expanded(
                         child: Card(
                           elevation: 5,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          color: Colors
-                              .green.shade100, // Menentukan warna putih sebagai latar belakang
+                          color: Colors.green.shade100,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -104,55 +102,40 @@ class _TentangDesaPageState extends State<TentangDesaPage> {
                                 child: Center(
                                   child: Container(
                                     margin: EdgeInsets.all(20),
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.2,
-                                    height:
-                                        MediaQuery.of(context).size.width * 0.2,
+                                    width: MediaQuery.of(context).size.width * 0.4,
+                                    height: MediaQuery.of(context).size.width * 0.4,
                                     child: Image.asset(
                                       "assets/images/pertanian.png",
-                                      fit: BoxFit.fitHeight,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.3,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(12),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "${informasiDesa.luasLahanPertanian ?? 0} Hektar",
-                                          style: GoogleFonts.outfit().copyWith(
-                                            fontSize: 21,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
+                                child: Center(
+                                  child: Text(
+                                    "${informasiDesa.luasLahanPertanian ?? 0} Hektar",
+                                    style: GoogleFonts.outfit().copyWith(
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  ],
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.4,
+                      SizedBox(width: 10),
+                      Expanded(
                         child: Card(
                           elevation: 5,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          color: Colors
-                              .brown.shade100, // Menentukan warna putih sebagai latar belakang
+                          color: Colors.brown.shade100,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -162,40 +145,26 @@ class _TentangDesaPageState extends State<TentangDesaPage> {
                                 child: Center(
                                   child: Container(
                                     margin: EdgeInsets.all(20),
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.2,
-                                    height:
-                                        MediaQuery.of(context).size.width * 0.2,
+                                    width: MediaQuery.of(context).size.width * 0.4,
+                                    height: MediaQuery.of(context).size.width * 0.4,
                                     child: Image.asset(
                                       "assets/images/peternakan.png",
-                                      fit: BoxFit.fitHeight,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.3,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(12),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          "${informasiDesa.lahanPeternakan ?? 0} Peternakan",
-                                          style: GoogleFonts.outfit().copyWith(
-                                            fontSize: 21,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ],
+                                child: Center(
+                                  child: Text(
+                                    "${informasiDesa.lahanPeternakan ?? 0} Peternakan",
+                                    style: GoogleFonts.outfit().copyWith(
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  ],
+                                    textAlign: TextAlign.center,
+                                  ),
                                 ),
                               ),
                             ],
@@ -204,14 +173,12 @@ class _TentangDesaPageState extends State<TentangDesaPage> {
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
+                  SizedBox(height: 20),
                   Align(
                     alignment: Alignment.centerRight,
                     child: ElevatedButton(
                       onPressed: () {
-                             Navigator.push(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => PengurusDesaPage()),
                         );

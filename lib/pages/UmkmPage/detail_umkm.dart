@@ -25,7 +25,8 @@ class _DetailUMKMPageState extends State<DetailUMKMPage> {
   }
 
   Future<UMKMModel> fetchUMKMDetail(String umkmId) async {
-    final response = await http.get(Uri.parse('${URLs.baseUrl}/api/user/umkm/$umkmId/$token'));
+    final response = await http
+        .get(Uri.parse('${URLs.baseUrl}/api/user/umkm/$umkmId/$token'));
 
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body) as Map<String, dynamic>;
@@ -45,9 +46,12 @@ class _DetailUMKMPageState extends State<DetailUMKMPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail UMKM'),
+        title: Text(
+          'Detail UMKM',
+          style: TextStyle(color: Colors.white),
+        ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -67,38 +71,81 @@ class _DetailUMKMPageState extends State<DetailUMKMPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    umkmDetail.gambar != ''
-                        ? Image.network(
-                            umkmDetail.gambar!,
-                            fit: BoxFit.cover,
-                          )
-                        : Image.asset(
-                            'assets/images/image_default.png',
-                            fit: BoxFit.fill,
-                          ),
-                    SizedBox(height: 16.0),
                     Text(
                       umkmDetail.nama ?? '',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    SizedBox(height: 16.0),
+                    umkmDetail.gambar != ''
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              umkmDetail.gambar!,
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: 200,
+                            ),
+                          )
+                        : ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.asset(
+                              'assets/images/image_default.png',
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: 200,
+                            ),
+                          ),
+                    SizedBox(height: 16.0),
+                    Row(
+                      children: [
+                        Container(
+                          height: 40,
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          decoration: BoxDecoration(
+                            color: Color(0xff1F5876),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
+                            child: Text(
+                              umkmDetail.namaJenisUmkm ?? '',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 8.0),
+                        Container(
+                          height: 40,
+                          padding: EdgeInsets.symmetric(horizontal: 12.0),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: Colors.black),
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                            child: Text(
+                              umkmDetail.namaLengkap ?? '',
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 16.0),
                     Text(
-                      'Jenis UMKM: ${umkmDetail.namaJenisUmkm ?? ''}',
-                      style: TextStyle(fontSize: 18),
+                      'Deskripsi:',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                    SizedBox(height: 16.0),
                     Text(
-                      'Deskripsi: ${umkmDetail.deskripsi ?? ''}',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    SizedBox(height: 16.0),
-                    Text(
-                      'Lokasi: ${umkmDetail.lokasi ?? ''}',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    SizedBox(height: 16.0),
-                    Text(
-                      'Pemilik: ${umkmDetail.namaLengkap ?? ''}',
+                      umkmDetail.deskripsi ?? '',
                       style: TextStyle(fontSize: 18),
                     ),
                   ],

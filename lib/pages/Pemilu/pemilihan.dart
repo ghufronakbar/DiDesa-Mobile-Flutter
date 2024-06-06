@@ -66,57 +66,143 @@ class _PemilihanKetuaDesaPageState extends State<PemilihanKetuaDesaPage> {
                 children: [
                   Text(
                     data['judul'],
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
                   ),
                   SizedBox(height: 16.0),
                   Text(
                     '${data['deskripsi']}',
-                    style: TextStyle(fontSize: 18),
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black54,
+                    ),
                   ),
                   SizedBox(height: 16.0),
                   Text(
-                    'Periode Pelaksanaan: ',
-                    style: TextStyle(fontSize: 18),
+                    'Periode Pelaksanaan:',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   SizedBox(height: 8.0),
-                  Text(
-                    '${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['tanggal_mulai']))} - ${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['tanggal_selesai']))}',
-                    style: TextStyle(fontSize: 18),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(16.0),
+                          margin: EdgeInsets.only(right: 8.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Tanggal Mulai:',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(height: 8.0),
+                              Text(
+                                '${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['tanggal_mulai']))}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(16.0),
+                          margin: EdgeInsets.only(left: 8.0),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 2,
+                                blurRadius: 5,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Tanggal Selesai:',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              SizedBox(height: 8.0),
+                              Text(
+                                '${DateFormat('dd-MM-yyyy').format(DateTime.parse(data['tanggal_selesai']))}',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 16.0),
                   Text(
-                    'Total Calon: ${data['jumlah_calon']}',
-                    style: TextStyle(fontSize: 18),
+                    '${data['jumlah_calon']} Calon sedang berpartisipasi',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black87,
+                    ),
                   ),
                   SizedBox(height: 24.0),
                   Row(
                     children: [
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => CalonKepalaDesaPage(
-                                      pemilihanKetuaId: widget.pemilihanKetuaId),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.all(20),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CalonKepalaDesaPage(
+                                    pemilihanKetuaId: widget.pemilihanKetuaId),
                               ),
-                              backgroundColor: Color(0xff1F5876),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.symmetric(vertical: 20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Text(
-                              'Lihat Calon',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
+                            backgroundColor: Color(0xff1F5876),
+                          ),
+                          child: Text(
+                            'Lihat Calon',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white,
                             ),
                           ),
                         ),

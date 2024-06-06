@@ -60,6 +60,7 @@ class _LoginPageBodyState extends State<LoginPageBody> {
         });
       } else {
         setState(() {
+          print(response.statusCode);
           message = "Terjadi Masalah Pada Server";
         });
         Future.delayed(Duration(seconds: 2), () {
